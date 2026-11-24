@@ -534,4 +534,4 @@ These were considered on 24 Nov 2026 and deliberately left out of v1, to keep th
 | --- | --- |
 | Design System Architecture (whiteboard, kept outside the repo) | Token tiers, the build to each platform and the docs site, and how components build on each other |
 | Design System Inventory and Roadmap (sheet, kept outside the repo) | Components tab: all 44 core components plus the 7 VolleyXP product-layer components, with wave, lifecycle status, platforms, Figma parity, the Lock In part each replaces, variants and accessibility notes. Audit tab: 56 Lock In parts, each with a drafted verdict and reason. Roadmap tab: 63 tasks by phase plus 5 parked for after 1.0, starting with the Lock In audit, with status and hour estimates to fill in |
-| Reference research (tab in this doc) | Six public design systems compared, with the one idea worth borrowing from each |
+| [Reference research](reference-research.md) | Six public design systems compared, with the one idea worth borrowing from each |
