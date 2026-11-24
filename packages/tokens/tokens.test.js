@@ -4,7 +4,7 @@ import { test } from 'node:test';
 
 test('the test token builds to a CSS variable', async () => {
   const css = await readFile(new URL('dist/css/tokens.css', import.meta.url), 'utf8');
-  assert.match(css, /^\s*--space-1: 4px;/m);
+  assert.match(css, /^\s*--squilp-space-1: 4px;/m);
 });
 
 test('the test token builds to a React Native number', async () => {

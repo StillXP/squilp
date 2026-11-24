@@ -31,5 +31,5 @@ The phase 1 gate is a test token that builds to CSS and React Native in CI. Seve
 - CI runs on Node 24 and 26, the lowest supported and latest versions (0022).
 - Pull requests must pass CI before they merge to `main`.
 - Style Dictionary's defaults do not fit React Native or OKLCH. The config turns px dimensions into plain numbers for React Native, and phase 2 needs a setting that keeps OKLCH colors in CSS.
-- CSS variables have no prefix yet (`--space-1`). Whether to add one is open and must be settled in phase 2, before any token is final.
+- CSS variables have a prefix, decided in 0027.
 - CI installs pnpm from the version in `package.json`, so there is one place to update it.

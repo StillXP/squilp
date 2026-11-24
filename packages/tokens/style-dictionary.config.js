@@ -22,6 +22,7 @@ export default {
   platforms: {
     css: {
       transformGroup: 'css',
+      prefix: 'squilp',
       buildPath: 'dist/css/',
       files: [{ destination: 'tokens.css', format: 'css/variables' }],
     },

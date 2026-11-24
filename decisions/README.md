@@ -30,3 +30,4 @@ Squilp's architecture decision records, numbered and never deleted. A superseded
 | 0024 | [Accessibility and device checks without a Mac](0024-accessibility-and-device-checks-without-a-mac.md) | Accepted |
 | 0025 | [Versioning before 1.0](0025-versioning-before-1-0.md) | Accepted |
 | 0026 | [Phase 1 build and CI](0026-phase-1-build-and-ci.md) | Accepted |
+| 0027 | [CSS variables use a squilp prefix](0027-css-variables-use-a-squilp-prefix.md) | Accepted |
