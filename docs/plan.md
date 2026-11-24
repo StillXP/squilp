@@ -432,7 +432,7 @@ A part that fails a single check is usually Rework; a part that conflicts with a
 
 ## Roadmap
 
-Six phases take Squilp to 1.0, starting with an audit of Lock In, and a phase starts only when the gate before it passes. Tasks for each phase live in the Roadmap tab of the inventory sheet (see Supporting materials).
+Six phases take Squilp to 1.0, starting with an audit of Lock In, and a phase starts only when the gate before it passes. Tasks for each phase live in the Roadmap tab of the inventory sheet (see Supporting materials). A phase's tasks are finished before the next phase starts, with the exceptions for phase 1 in decision record 0028.
 
 Phases, each closed by a gate:
 
