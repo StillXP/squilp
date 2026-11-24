@@ -1,6 +1,6 @@
 # 0022: Support matrix: two tiers with pinned minimums
 
-Status: Accepted · Date: 2026-11-24
+Status: Accepted, Node minimum superseded by 0026 · Date: 2026-11-24
 
 ## Context
 
