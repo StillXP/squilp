@@ -34,4 +34,4 @@ Lock In, the system Squilp replaces, became messy because tools and patterns wer
 
 ## Current phase
 
-Phase 1: set up. See the roadmap in `docs/plan.md`. Decisions still open for this phase: the support matrix (minimum iOS and Android versions, browsers), which Figma plan is available, and 0.x versioning until 1.0.
+Phase 1: set up. See the roadmap in `docs/plan.md`. The decisions first left open for this phase are settled in 0022 to 0025.

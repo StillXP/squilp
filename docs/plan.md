@@ -32,7 +32,7 @@ Seventeen decisions made on 24 Nov 2026 shape the rest of this plan; one reverse
 | 14 | A small Expo scorekeeper app is the first native product built on Squilp | @squilp/react-native has a real consumer; offline scoring proves the live and network states pattern; about two weeks added before 1.0 |
 | 15 | Apps use Expo; the React Native package works in any React Native app | Follows React Native's own recommendation to start with a framework |
 | 16 | Material Symbols as SVG on every platform, replacing SF Symbols on iOS | One icon source behind the semantic icon map; volleyball icons drawn as SVGs in the same style |
-| 17 | React Native components are not shown in web Storybook | On-device Storybook and React Native Testing Library instead; simulator screenshots in the docs; Chromatic stays web-only |
+| 17 | React Native components are not shown in web Storybook | On-device Storybook and React Native Testing Library instead; device screenshots in the docs; Chromatic stays web-only |
 
 ## Goals and success measures
 
@@ -76,7 +76,7 @@ Tokens live as DTCG JSON in a git repo and are built for every platform with Sty
 | iOS and Android | One React Native package (`@squilp/react-native`) | One component codebase for both phones, sharing the web API, tested in an Expo scorekeeper app; Lock In's React Native package is the starting point (decision 10) |
 | Repo | pnpm workspaces + Turborepo | One pull request can change a token and every package that uses it. Packages: tokens, core (shared logic), react, react-native, mcp-server. Apps: docs, Storybook, scorekeeper (Expo) |
 | Versioning | Changesets; every package published to npm under @squilp | One version number across all packages |
-| Docs | Astro Starlight site with embedded Storybook stories and simulator screenshots | See Documentation site |
+| Docs | Astro Starlight site with embedded Storybook stories and device screenshots | See Documentation site |
 | Testing | Storybook interaction tests, axe-core and Chromatic visual tests on web; React Native Testing Library and on-device Storybook for behavior and accessibility queries; manual VoiceOver and TalkBack passes on devices | Visual regressions and accessibility caught in CI |
 
 **Chromatic snapshot budget.** Chromatic's free plan includes 5,000 snapshots a month, and testing pauses when they run out, which is what happened on Lock In. Squilp stays inside it with five rules:
@@ -227,8 +227,8 @@ WCAG 2.2 AA is the floor for every component on every platform, and a component 
 
 | Check | Web | iOS | Android |
 | --- | --- | --- | --- |
-| Automated | axe-core in Storybook and CI | React Native Testing Library queries, plus Accessibility Inspector on device | React Native Testing Library queries, plus Accessibility Scanner on device |
-| Screen reader | VoiceOver (macOS) and NVDA (Windows) | VoiceOver | TalkBack |
+| Automated | axe-core in Storybook and CI | React Native Testing Library queries | React Native Testing Library queries, plus Accessibility Scanner on device |
+| Screen reader | VoiceOver (iPhone Safari) and NVDA (Windows); one macOS VoiceOver pass before 1.0 for keyboard-heavy components | VoiceOver | TalkBack |
 | Keyboard and focus | Full keyboard support following ARIA Authoring Practices patterns; visible focus ring | Full Keyboard Access and focus order | Keyboard and switch access, focus order |
 | Text scaling | 200% zoom and 400% reflow | Largest accessibility text size | 200% font scale |
 | Docs | Accessibility section: roles, keyboard map, what is announced | Same | Same |
@@ -277,7 +277,7 @@ The docs site is a product in its own right and the front door of the portfolio 
 9. Do and don't examples
 10. Changelog for this component
 
-Native screenshots are captured from the React Native stories running in the iOS and Android simulators.
+Native screenshots are captured from the React Native stories running on an iPhone and an Android emulator.
 
 ## AI usability (MCP server)
 
@@ -328,7 +328,7 @@ Drift cannot be removed, only caught quickly. Each kind gets one source of truth
 - A component change is done only when Figma and code are updated in the same release.
 - The inventory sheet tracks parity per surface (Figma, web, iOS, Android), so drift is visible at a glance.
 
-**Plan limits to confirm.** Writing Figma variables through the REST API is, to my knowledge, limited to Enterprise plans, and library analytics for detach rates need an Organization plan. On a personal plan, token sync runs through a plugin at release time, and usage drift is caught in code only.
+**Plan limits.** Squilp uses Figma Professional (decision record 0023). The Variables REST API is limited to Enterprise plans, and library analytics for detach rates need an Organization plan, so token sync runs through the Figma MCP at release time, using one script saved in the repo, and usage drift is caught in code only. Code Connect is limited to one active library and one framework, so it maps React only.
 
 ## Governance
 
@@ -357,7 +357,7 @@ What gets easier, what gets harder, what to revisit.
 4. Stable: API frozen; breaking changes need a major version.
 5. Deprecated: kept for at least one major version with a migration note, then removed.
 
-**Versioning.** Semantic versioning, with one version number across all platforms.
+**Versioning.** Semantic versioning, with one version number across all platforms. Until 1.0, breaking changes are minor versions and everything else is a patch; the table applies from 1.0.
 
 | Change | Version bump |
 | --- | --- |
@@ -509,6 +509,10 @@ All open questions were settled on 24 Nov 2026. New questions go here as they co
 - Decided: React for web. It fits VolleyXP and Storybook, and it is what most design systems roles use.
 - Decided: Vercel hosts the docs site, the contribution form's function and the hosted MCP endpoint, alongside VolleyXP.
 - Decided: the Squilp repo is public from day one, so the commit history, audit and decision records are visible while I job hunt. It uses the MIT license.
+- Decided: the support matrix has two tiers with pinned minimums (decision record 0022).
+- Decided: Figma runs on a Professional plan, and token sync runs through the Figma MCP with a saved script (decision record 0023).
+- Decided: there is no Mac to test on, so VoiceOver runs on an iPhone, with one macOS pass before 1.0 (decision record 0024).
+- Decided: until 1.0, breaking changes are minor versions and everything else is a patch (decision record 0025).
 
 ## Known gaps
 
@@ -522,7 +526,7 @@ These were considered on 24 Nov 2026 and deliberately left out of v1, to keep th
 | Adoption metrics (share of VolleyXP built from Squilp) | Easy to add once the migration starts; useful for the case study |
 | Versioned docs (docs for older releases) | Only needed once a 2.0 exists |
 
-**Decide in phase 1:** the support matrix (minimum iOS and Android versions, browsers), which Figma plan is available (it decides whether token sync to Figma is automated or runs through a plugin), and 0.x versioning until 1.0.
+**Decided in phase 1:** the support matrix (0022), the Figma plan and token sync (0023), checks without a Mac (0024) and versioning before 1.0 (0025).
 
 ## Supporting materials
 
