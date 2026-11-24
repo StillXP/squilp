@@ -1,6 +1,6 @@
 # Working on Squilp: instructions for AI agents
 
-Read this before making any change. It applies to Claude Code and any other coding agent.
+Read this before making any change. It applies to any coding agent.
 
 ## The most important rule: propose, don't decide
 
