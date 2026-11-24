@@ -1,6 +1,6 @@
 # 0012: Build tokens with Style Dictionary from DTCG 2025.10 JSON
 
-Status: Accepted · Date: 2026-11-24
+Status: Accepted, Resolver part superseded by 0026 · Date: 2026-11-24
 
 ## Context
 

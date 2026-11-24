@@ -1,0 +1,9 @@
+{
+  "space": {
+    "$type": "dimension",
+    "1": {
+      "$value": { "value": 4, "unit": "px" },
+      "$description": "Test token for the phase 1 gate. Replaced by the real tokens in phase 2."
+    }
+  }
+}

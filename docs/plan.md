@@ -69,7 +69,7 @@ Tokens live as DTCG JSON in a git repo and are built for every platform with Sty
 
 | Layer | Choice | Why |
 | --- | --- | --- |
-| Token source | DTCG 2025.10 JSON (`.tokens.json`) in the monorepo | An open, stable format that any tool can read; modes through the Resolver module |
+| Token source | DTCG 2025.10 JSON (`.tokens.json`) in the monorepo | An open, stable format that any tool can read; modes are listed in the build config for now (decision record 0026) |
 | Token build | Style Dictionary v5 | Outputs CSS custom properties, a Tailwind v4 theme, a JS/TS theme for React Native and Figma-ready JSON from one config; the common tool, replacing Lock In's custom build |
 | Design | Figma variables, modes and a component library | [Native DTCG import exists](https://help.figma.com/hc/en-us/articles/15343816063383-Modes-for-variables) but only takes px dimensions and skips composite tokens, so a script covers the gaps |
 | Web | React components styled with CSS Modules and CSS custom properties; a Tailwind v4 theme generated from the tokens for apps | Fits VolleyXP (Next.js) and Storybook; consumers need no particular styling tool and it works with Server Components, while Tailwind apps get Squilp tokens as utility classes (decision 12) |
@@ -129,7 +129,7 @@ Tokens come in three tiers, and components may only use the top two. This is the
 | Semantic | Purpose, set per mode | `color.background.accent`, `space.inset.md`, `text.body.md` | Components and product code |
 | Component | Component-only overrides, added only when a semantic token cannot express it | `button.primary.background.hover` | That one component |
 
-**Modes.** Semantic tokens resolve per mode through the DTCG Resolver module. v1 ships three color modes (light, dark, high contrast) and two density modes (comfortable, compact). A platform layer sits beside them for values that must differ by platform, such as font families and minimum touch target size.
+**Modes.** Semantic tokens resolve per mode through modes listed in the Style Dictionary config, until Style Dictionary reads DTCG Resolver documents (decision record 0026). v1 ships three color modes (light, dark, high contrast) and two density modes (comfortable, compact). A platform layer sits beside them for values that must differ by platform, such as font families and minimum touch target size.
 
 **League and team colors.** Left out for now (decision 9). Every league and team uses Squilp's own accent, and Team identity shows a team's crest and name without a team color. Because components only use semantic accent roles, a brand layer can still be added after 1.0 without changing them.
 

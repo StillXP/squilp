@@ -15,7 +15,7 @@ Squilp's architecture decision records, numbered and never deleted. A superseded
 | 0009 | [Squilp is usable by AI agents through an MCP server](0009-squilp-is-usable-by-ai-agents-through-an-mcp-server.md) | Accepted |
 | 0010 | [The MCP server is read-only](0010-the-mcp-server-is-read-only.md) | Accepted |
 | 0011 | [Contributions come in through a docs-site form that creates GitHub issues](0011-contributions-come-in-through-a-docs-site-form-that-creates.md) | Accepted |
-| 0012 | [Build tokens with Style Dictionary from DTCG 2025.10 JSON](0012-build-tokens-with-style-dictionary-from-dtcg-202510-json.md) | Accepted |
+| 0012 | [Build tokens with Style Dictionary from DTCG 2025.10 JSON](0012-build-tokens-with-style-dictionary-from-dtcg-202510-json.md) | Accepted, partly superseded by 0026 |
 | 0013 | [CSS Modules for components; a Tailwind theme for apps](0013-css-modules-for-components-a-tailwind-theme-for-apps.md) | Accepted |
 | 0014 | [Breakpoints use Tailwind's values with three size classes](0014-breakpoints-use-tailwinds-values-with-three-size-classes.md) | Accepted |
 | 0015 | [An Expo scorekeeper app is the first native product](0015-an-expo-scorekeeper-app-is-the-first-native-product.md) | Accepted |
@@ -25,7 +25,8 @@ Squilp's architecture decision records, numbered and never deleted. A superseded
 | 0019 | [Use Chromatic within a snapshot budget](0019-use-chromatic-within-a-snapshot-budget.md) | Accepted |
 | 0020 | [Foundations](0020-foundations.md) | Accepted |
 | 0021 | [Tooling and project setup](0021-tooling-and-project-setup.md) | Accepted |
-| 0022 | [Support matrix: two tiers with pinned minimums](0022-support-matrix.md) | Accepted |
+| 0022 | [Support matrix: two tiers with pinned minimums](0022-support-matrix.md) | Accepted, partly superseded by 0026 |
 | 0023 | [Figma runs on a Professional plan](0023-figma-professional-plan.md) | Accepted |
 | 0024 | [Accessibility and device checks without a Mac](0024-accessibility-and-device-checks-without-a-mac.md) | Accepted |
 | 0025 | [Versioning before 1.0](0025-versioning-before-1-0.md) | Accepted |
+| 0026 | [Phase 1 build and CI](0026-phase-1-build-and-ci.md) | Accepted |
