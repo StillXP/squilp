@@ -3,12 +3,19 @@
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StillXP/squilp.git",
+    "directory": "packages/tokens"
+  },
   "type": "module",
   "engines": {
     "node": ">=24"
   },
   "exports": {
-    "./tailwind.css": "./dist/tailwind.css"
+    "./react-native": "./dist/react-native/tokens.js",
+    "./tailwind.css": "./dist/tailwind.css",
+    "./tokens.css": "./dist/css/tokens.css"
   },
   "files": [
     "dist"
