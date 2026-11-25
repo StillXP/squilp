@@ -1,3 +1,5 @@
+import { tailwindTheme } from './tailwind-format.js';
+
 // React Native takes plain numbers, so a 4 px dimension becomes 4.
 // Only px exists on React Native; any other unit is a mistake in the token.
 function dimensionToNumber(token) {
@@ -11,6 +13,9 @@ function dimensionToNumber(token) {
 export default {
   source: ['src/**/*.tokens.json'],
   hooks: {
+    formats: {
+      'squilp/tailwind/theme': tailwindTheme,
+    },
     transforms: {
       'squilp/dimension/number': {
         type: 'value',
@@ -25,6 +30,12 @@ export default {
       prefix: 'squilp',
       buildPath: 'dist/css/',
       files: [{ destination: 'tokens.css', format: 'css/variables' }],
+    },
+    tailwind: {
+      transformGroup: 'css',
+      prefix: 'squilp',
+      buildPath: 'dist/',
+      files: [{ destination: 'tailwind.css', format: 'squilp/tailwind/theme' }],
     },
     reactNative: {
       transforms: ['name/camel', 'squilp/dimension/number'],

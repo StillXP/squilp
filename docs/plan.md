@@ -92,9 +92,9 @@ If the budget still runs out, Playwright screenshot tests are the fallback.
 **Tailwind theme rules.** The Tailwind theme Style Dictionary generates follows five rules, so Tailwind apps stay on Squilp tokens:
 
 - Theme variables point at Squilp's CSS variables, never raw values, so color and density modes work in Tailwind classes automatically.
-- Tailwind's `dark:` variant is tied to Squilp's color mode setting.
+- Tailwind's `dark:` variant is tied to Squilp's color mode setting, `data-color-mode` (decision record 0030).
 - Tailwind's default palette and scales are turned off: a class like `bg-blue-500` does not exist.
-- A lint rule rejects bracket values such as `bg-[#ff6600]` or `p-[13px]`.
+- Lint rules reject bracket values such as `bg-[#ff6600]` or `p-[13px]`, and raw values the theme does not control, such as `z-13` (decision record 0030).
 - Class names are short and readable: `color.background.accent` becomes `bg-accent`.
 
 **Shared logic.** `@squilp/core` holds everything that is not visual and is shared by web and mobile: state hooks, the data formatting helpers, the icon map and the size class hook.
@@ -526,12 +526,12 @@ These were considered on 24 Nov 2026 and deliberately left out of v1, to keep th
 | Adoption metrics (share of VolleyXP built from Squilp) | Easy to add once the migration starts; useful for the case study |
 | Versioned docs (docs for older releases) | Only needed once a 2.0 exists |
 
-**Decided in phase 1:** the support matrix (0022), the Figma plan and token sync (0023), checks without a Mac (0024) and versioning before 1.0 (0025).
+**Decided in phase 1:** the support matrix (0022), the Figma plan and token sync (0023), checks without a Mac (0024), versioning before 1.0 (0025), the build and CI (0026), the CSS variable prefix (0027), the package shells (0028), the Figma library structure (0029), and the Tailwind theme and linting (0030).
 
 ## Supporting materials
 
 | Material | What it holds |
 | --- | --- |
 | Design System Architecture (whiteboard, kept outside the repo) | Token tiers, the build to each platform and the docs site, and how components build on each other |
-| Design System Inventory and Roadmap (sheet, kept outside the repo) | Components tab: all 44 core components plus the 7 VolleyXP product-layer components, with wave, lifecycle status, platforms, Figma parity, the Lock In part each replaces, variants and accessibility notes. Audit tab: 56 Lock In parts, each with a drafted verdict and reason. Roadmap tab: 63 tasks by phase plus 5 parked for after 1.0, starting with the Lock In audit, with status and hour estimates to fill in |
+| Design System Inventory and Roadmap (sheet, kept outside the repo) | Components tab: all 44 core components plus the 7 VolleyXP product-layer components, with wave, lifecycle status, platforms, Figma parity, the Lock In part each replaces, variants and accessibility notes. Audit tab: 56 Lock In parts, each with a drafted verdict and reason. Roadmap tab: tasks by phase, plus ideas parked for after 1.0, starting with the Lock In audit, with status and hour estimates to fill in |
 | [Reference research](reference-research.md) | Six public design systems compared, with the one idea worth borrowing from each |

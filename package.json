@@ -8,9 +8,16 @@
   },
   "scripts": {
     "build": "turbo run build",
-    "test": "turbo run test"
+    "lint": "eslint . --max-warnings 0",
+    "test": "turbo run test && node --test \"lint/*.test.js\""
   },
   "devDependencies": {
-    "turbo": "2.11.13"
+    "@eslint/js": "10.0.1",
+    "eslint": "10.15.0",
+    "eslint-plugin-better-tailwindcss": "4.11.0",
+    "tailwindcss": "4.3.5",
+    "turbo": "2.11.13",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.74.0"
   }
 }
