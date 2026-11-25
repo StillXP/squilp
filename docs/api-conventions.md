@@ -42,13 +42,13 @@ In Figma, `disabled` is a `true` or `false` variant property, the same name as t
 
 ## Styling
 
-Components have no `className` or `style` prop. Space between components comes from Stack, Grid or an element the app wraps around them. A look a component cannot produce is a proposal for a new variant.
+Components have no `className` or `style` prop. Space between components comes from Stack, Grid or an element the app wraps around them. A look a component cannot produce is a proposal for a new variant. Layout props are decided again with Bracket (0034).
 
 ## Rules
 
 - Prop names and values match on both platforms. A prop that only makes sense on one is marked platform-only in the metadata.
 - Squilp's own props (`onPress`, `label`) hide platform differences instead of exposing `onClick` or `accessibilityLabel`.
-- The component metadata file records the API once, with any platform-only props flagged, so the docs site and the MCP server show it correctly.
+- The component metadata file, in `packages/core/metadata/components/`, records the API once, with any platform-only props flagged, so the docs site and the MCP server show it correctly.
 - A new component needs its row below before work starts.
 
 ## Components

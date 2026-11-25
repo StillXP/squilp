@@ -11,15 +11,18 @@
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
-    }
+    },
+    "./metadata.json": "./dist/metadata.json"
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "tsc && node metadata/build.js",
+    "test": "node --test"
   },
   "devDependencies": {
+    "ajv": "8.20.0",
     "typescript": "6.0.3"
   }
 }

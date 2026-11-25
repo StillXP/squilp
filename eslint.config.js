@@ -1,3 +1,4 @@
+import comments from '@eslint-community/eslint-plugin-eslint-comments';
 import js from '@eslint/js';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import ts from 'typescript-eslint';
@@ -7,6 +8,10 @@ export default defineConfig([
   globalIgnores(['**/dist/', '**/build/', '**/.turbo/', '**/.expo/', '**/storybook-static/', '**/coverage/']),
   js.configs.recommended,
   ts.configs.recommended,
+  {
+    plugins: { '@eslint-community/eslint-comments': comments },
+    rules: { '@eslint-community/eslint-comments/require-description': 'error' },
+  },
   {
     files: ['**/*.{jsx,tsx}'],
     languageOptions: { parserOptions: { ecmaFeatures: { jsx: true } } },
