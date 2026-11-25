@@ -34,3 +34,4 @@ Squilp's architecture decision records, numbered and never deleted. A superseded
 | 0028 | [Package shells and finishing phase 1](0028-package-shells-and-finishing-phase-1.md) | Accepted |
 | 0029 | [Figma library structure](0029-figma-library-structure.md) | Accepted |
 | 0030 | [Tailwind theme and linting](0030-tailwind-theme-and-linting.md) | Accepted |
+| 0031 | [Component API conventions](0031-component-api-conventions.md) | Accepted |
