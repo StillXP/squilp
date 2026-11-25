@@ -40,3 +40,4 @@ Squilp's architecture decision records, numbered and never deleted. A superseded
 | 0034 | [No layout props for now](0034-no-layout-props-for-now.md) | Accepted |
 | 0035 | [Token naming checks](0035-token-naming-checks.md) | Accepted |
 | 0036 | [Versions and release pull requests](0036-versions-and-release-pull-requests.md) | Accepted |
+| 0037 | [Publish step and first version](0037-publish-step-and-first-version.md) | Accepted |
