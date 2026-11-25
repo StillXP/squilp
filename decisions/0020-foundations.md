@@ -1,6 +1,6 @@
 # 0020: Foundations
 
-Status: Accepted · Date: 2026-11-24
+Status: Accepted, brand hue superseded by 0038 · Date: 2026-11-24
 
 ## Context
 
