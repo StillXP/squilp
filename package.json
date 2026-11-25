@@ -9,9 +9,11 @@
   "scripts": {
     "build": "turbo run build",
     "lint": "eslint . --max-warnings 0",
+    "version": "changeset version && pnpm install --lockfile-only",
     "test": "turbo run test && node --test \"lint/*.test.js\""
   },
   "devDependencies": {
+    "@changesets/cli": "3.0.3",
     "@eslint-community/eslint-plugin-eslint-comments": "4.8.1",
     "@eslint/js": "10.0.1",
     "eslint": "10.15.0",

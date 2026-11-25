@@ -1,0 +1,6 @@
+{
+  "$schema": "../node_modules/@changesets/config/schema.json",
+  "access": "public",
+  "baseBranch": "main",
+  "fixed": [["@squilp/tokens", "@squilp/core", "@squilp/react", "@squilp/react-native", "@squilp/mcp-server"]]
+}
