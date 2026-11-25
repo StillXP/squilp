@@ -11,20 +11,25 @@ const appearance = new Set([
 const segment = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
 // A primitive holds a raw value. Any other token points at one.
-function hasReference(value) {
+export function hasReference(value) {
   if (typeof value === 'string') return /^\{.+\}$/.test(value);
   if (value === null || typeof value !== 'object') return false;
   return '$ref' in value || Object.values(value).some(hasReference);
 }
 
-function* tokensIn(group, path = []) {
+// Finds every token, with the type it has or inherits.
+export function* tokensIn(group, path = [], inherited = group.$type) {
   for (const [key, child] of Object.entries(group)) {
     if (child === null || typeof child !== 'object') continue;
     // $root is a group's own token. Every other $ key describes the group.
     if (key.startsWith('$') && key !== '$root') continue;
     const here = key === '$root' ? path : [...path, key];
-    if ('$value' in child || '$ref' in child) yield { path: here, value: child.$value ?? { $ref: child.$ref } };
-    else yield* tokensIn(child, here);
+    const type = child.$type ?? inherited;
+    if ('$value' in child || '$ref' in child) {
+      yield { path: here, type, value: child.$value ?? { $ref: child.$ref }, keys: Object.keys(child) };
+    } else {
+      yield* tokensIn(child, here, type);
+    }
   }
 }
 

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import StyleDictionary from 'style-dictionary';
-import config from './style-dictionary.config.js';
+import { webConfig } from './style-dictionary.config.js';
 import { nameProblems } from './names.js';
 
 const raw = { $type: 'color', $value: { colorSpace: 'oklch', components: [0.7, 0.2, 50] } };
@@ -48,6 +48,6 @@ for (const [title, tokens, reason] of invalid) {
 
 test('a bad name stops the build', async () => {
   const tokens = { color: { orange: { 500: raw }, background: { blue: alias } } };
-  const dictionary = new StyleDictionary({ ...config, source: undefined, tokens }, { init: false });
+  const dictionary = new StyleDictionary({ ...webConfig(undefined, 'dist/'), tokens }, { init: false });
   await assert.rejects(dictionary.init(), /Invalid token names:\ncolor\.background\.blue/);
 });
