@@ -113,7 +113,7 @@ Tokens come in three tiers, and components may only use the top two. This is the
 | Semantic | Purpose, set per mode | `color.background.accent`, `space.inset.md`, `text.body.md` | Components and product code |
 | Component | Component-only overrides, added only when a semantic token cannot express it | `button.primary.background.hover` | That one component |
 
-**Modes.** Semantic tokens resolve per mode through modes listed in the Style Dictionary config, until Style Dictionary reads DTCG Resolver documents (decision record 0026). v1 ships three color modes (light, dark, high contrast) and two density modes (comfortable, compact). A platform layer sits beside them for values that must differ by platform, such as font families and minimum touch target size.
+**Modes.** Semantic tokens resolve per mode through modes listed in the Style Dictionary config, until Style Dictionary reads DTCG Resolver documents (decision record 0026). v1 ships three color modes (light, dark, high contrast) and two density modes (comfortable, compact). A platform layer sits beside them for values that must differ by platform, such as font families and minimum touch target size. Each platform has a file of the values that differ from the shared ones (decision record 0039).
 
 **League and team colors.** Left out for now (decision 9). Every league and team uses Squilp's own accent, and Team identity shows a team's crest and name without a team color. Because components only use semantic accent roles, a brand layer can still be added after 1.0 without changing them.
 

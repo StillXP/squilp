@@ -9,5 +9,6 @@ test('the test token builds to a CSS variable', async () => {
 
 test('the test token builds to a React Native number', async () => {
   const { default: tokens } = await import('./dist/react-native/tokens.js');
-  assert.equal(tokens.space['1'], 4);
+  assert.equal(tokens.ios.space['1'], 4);
+  assert.equal(tokens.android.space['1'], 4);
 });

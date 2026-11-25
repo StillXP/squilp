@@ -11,8 +11,7 @@ function dimensionToNumber(token) {
   return value;
 }
 
-export default {
-  source: ['src/**/*.tokens.json'],
+const base = {
   preprocessors: ['squilp/names'],
   hooks: {
     preprocessors: {
@@ -29,31 +28,36 @@ export default {
       },
     },
   },
+  // Without these, Style Dictionary reports a bad token but still exits 0.
+  log: { warnings: 'error', verbosity: 'verbose', errors: { brokenReferences: 'throw' } },
+};
+
+export const webConfig = (source, dist) => ({
+  ...base,
+  source,
   platforms: {
     css: {
       transformGroup: 'css',
       prefix: 'squilp',
-      buildPath: 'dist/css/',
+      buildPath: `${dist}css/`,
       files: [{ destination: 'tokens.css', format: 'css/variables' }],
     },
     tailwind: {
       transformGroup: 'css',
       prefix: 'squilp',
-      buildPath: 'dist/',
+      buildPath: dist,
       files: [{ destination: 'tailwind.css', format: 'squilp/tailwind/theme' }],
     },
+  },
+});
+
+// Used once for iOS and once for Android. build.js joins the two.
+export const nativeConfig = {
+  ...base,
+  platforms: {
     reactNative: {
       transforms: ['name/camel', 'squilp/dimension/number'],
-      buildPath: 'dist/react-native/',
-      files: [
-        {
-          destination: 'tokens.js',
-          format: 'javascript/esm',
-          options: { minify: true },
-        },
-      ],
+      files: [{ destination: 'tokens.json', format: 'json/nested' }],
     },
   },
-  // Without these, Style Dictionary reports a bad token but still exits 0.
-  log: { warnings: 'error', verbosity: 'verbose', errors: { brokenReferences: 'throw' } },
 };

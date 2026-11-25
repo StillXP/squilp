@@ -15,5 +15,5 @@ test('the Tailwind theme only uses variables that tokens.css sets', async () => 
 
 test('React Native loads its tokens by package name', async () => {
   const { default: tokens } = await import('@squilp/tokens/react-native');
-  assert.equal(tokens.space['1'], 4);
+  assert.deepEqual(Object.keys(tokens), ['ios', 'android']);
 });
