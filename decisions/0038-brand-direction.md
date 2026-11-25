@@ -24,18 +24,32 @@ Contrast is the WCAG ratio. Difference is distance in OKLab, and anything under 
 
 For now:
 
-- **Brand hue:** purple, OKLCH hue 300. White button text in light mode, dark text on a pale fill in dark mode.
-- **Danger:** the original red, OKLCH hue 25.
+- **Brand hue:** the purple from the exploration, OKLCH hue 300 and chroma up to 0.22, with the ramp below. Main buttons use 700 with white text in light mode, 400 with dark text in dark mode, and 800 with white text in high contrast.
+- **Danger:** the original red, `#cc272e` (OKLCH hue 25).
 - **Live:** the same red.
 - **Neutrals:** plain, with no tint.
 - **Wordmark:** Dotted, lowercase Inter with the dot of the i in the brand color.
 - **Destructive buttons:** outlined with an icon beside a main action, and filled where the destructive action is the main one, such as in a confirmation dialog.
 - **Confirmed from 0020:** soft radius and three elevation levels. The rest of 0020 stands.
 
+| Step | Purple |
+| --- | --- |
+| 50 | `#f9f6ff` |
+| 100 | `#f0eaff` |
+| 200 | `#e2d4ff` |
+| 300 | `#d0b7ff` |
+| 400 | `#c09aff` |
+| 500 | `#b17eff` |
+| 600 | `#a25ff9` |
+| 700 | `#884bd5` |
+| 800 | `#6b37ab` |
+| 900 | `#512a82` |
+| 950 | `#311b4f` |
+
 ## Consequences
 
 - Replaces the orange brand hue in 0020.
-- The exact ramps are built and checked in the color task.
+- The color task turns this purple ramp into tokens and builds the neutral and status ramps.
 - Outlined destructive text needs a lighter red in dark mode to be readable. The filled red button is 2.4:1 against the dark dialog used in the exploration; its label is readable, and the color task should raise it.
 - Red and green are hard to tell apart with red-green color blindness, so live and winning must also differ by more than color. How they look is designed with Match card and Bracket, and is not decided here.
 - How Button's API offers the two destructive styles is decided with Button.
