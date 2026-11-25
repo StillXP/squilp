@@ -270,7 +270,7 @@ Agents use the system through an MCP server that ships with 1.0. The server is t
 **What it serves**
 
 - Tokens: the DTCG source, with modes and alias chains resolved.
-- Component metadata: one JSON file per component with status, platforms, props, variants, tokens used, accessibility requirements, and when to use it or something else. Generated from code where possible (TypeScript types, DocC, KDoc) and validated against a schema in CI.
+- Component metadata: one JSON file per component with status, platforms, props, variants, tokens used, accessibility requirements, and when to use it or something else. Props are generated from TypeScript types, and every file is validated against a schema in CI (decision record 0032).
 - Guidelines and patterns: the docs site content as markdown.
 
 **What it exposes**
@@ -510,7 +510,7 @@ These were considered on 24 Nov 2026 and deliberately left out of v1, to keep th
 | Adoption metrics (share of VolleyXP built from Squilp) | Easy to add once the migration starts; useful for the case study |
 | Versioned docs (docs for older releases) | Only needed once a 2.0 exists |
 
-**Decided in phase 1:** the support matrix (0022), the Figma plan and token sync (0023), checks without a Mac (0024), versioning before 1.0 (0025), the build and CI (0026), the CSS variable prefix (0027), the package shells (0028), the Figma library structure (0029), the Tailwind theme and linting (0030), and the component API conventions (0031).
+**Decided in phase 1:** the support matrix (0022), the Figma plan and token sync (0023), checks without a Mac (0024), versioning before 1.0 (0025), the build and CI (0026), the CSS variable prefix (0027), the package shells (0028), the Figma library structure (0029), the Tailwind theme and linting (0030), the component API conventions (0031), component metadata (0032), lint exceptions (0033), and no layout props for now (0034).
 
 ## Supporting materials
 

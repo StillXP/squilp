@@ -35,3 +35,6 @@ Squilp's architecture decision records, numbered and never deleted. A superseded
 | 0029 | [Figma library structure](0029-figma-library-structure.md) | Accepted |
 | 0030 | [Tailwind theme and linting](0030-tailwind-theme-and-linting.md) | Accepted |
 | 0031 | [Component API conventions](0031-component-api-conventions.md) | Accepted |
+| 0032 | [Component metadata](0032-component-metadata.md) | Accepted |
+| 0033 | [Lint exceptions need a reason](0033-lint-exceptions-need-a-reason.md) | Accepted |
+| 0034 | [No layout props for now](0034-no-layout-props-for-now.md) | Accepted |

@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Squilp component metadata",
+  "description": "One file per component, shared by every platform. See decision records 0031 and 0032.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "code", "category", "summary", "status", "platforms", "usage"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "name": {
+      "description": "The readable name used in docs and Figma.",
+      "type": "string",
+      "pattern": "^[A-Z][a-z0-9]*( [a-z0-9]+)*$"
+    },
+    "code": {
+      "description": "The name in code: the same words, each capitalized, with no spaces.",
+      "type": "string",
+      "pattern": "^[A-Z][A-Za-z0-9]*$"
+    },
+    "category": {
+      "enum": ["Primitives", "Actions", "Inputs", "Feedback", "Navigation", "Overlays", "Data display"]
+    },
+    "summary": { "$ref": "#/$defs/text" },
+    "status": { "enum": ["proposed", "alpha", "beta", "stable", "deprecated"] },
+    "platforms": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["web", "ios", "android"],
+      "properties": {
+        "web": { "$ref": "#/$defs/support" },
+        "ios": { "$ref": "#/$defs/support" },
+        "android": { "$ref": "#/$defs/support" }
+      }
+    },
+    "usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["when", "whenNot"],
+      "properties": {
+        "when": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/text" } },
+        "whenNot": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["situation"],
+            "properties": {
+              "situation": { "$ref": "#/$defs/text" },
+              "instead": {
+                "description": "What to use instead, such as another component.",
+                "$ref": "#/$defs/text"
+              }
+            }
+          }
+        }
+      }
+    },
+    "api": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["props"],
+      "properties": {
+        "props": { "type": "array", "items": { "$ref": "#/$defs/prop" } }
+      }
+    },
+    "tokens": {
+      "description": "Every token the component uses, as token paths.",
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)+$" }
+    },
+    "accessibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "keyboard", "announced", "tests"],
+      "properties": {
+        "role": { "$ref": "#/$defs/text" },
+        "keyboard": {
+          "description": "Empty for a component that takes no keyboard input.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["keys", "action"],
+            "properties": {
+              "keys": { "$ref": "#/$defs/text" },
+              "action": { "$ref": "#/$defs/text" }
+            }
+          }
+        },
+        "announced": {
+          "description": "What a screen reader says. Empty for a decorative component.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/text" }
+        },
+        "tests": { "type": "array", "items": { "$ref": "#/$defs/test" } }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "description": "From beta, every part is required.",
+      "if": { "$ref": "#/$defs/betaOrLater" },
+      "then": { "required": ["api", "tokens", "accessibility"] }
+    },
+    {
+      "description": "From beta, every supported platform has a test record.",
+      "if": { "$ref": "#/$defs/betaOrLater" },
+      "then": {
+        "allOf": [
+          { "if": { "$ref": "#/$defs/onWeb" }, "then": { "$ref": "#/$defs/testedOnWeb" } },
+          { "if": { "$ref": "#/$defs/onIos" }, "then": { "$ref": "#/$defs/testedOnIos" } },
+          { "if": { "$ref": "#/$defs/onAndroid" }, "then": { "$ref": "#/$defs/testedOnAndroid" } }
+        ]
+      }
+    }
+  ],
+  "$defs": {
+    "text": { "type": "string", "pattern": "\\S" },
+    "platform": { "enum": ["web", "ios", "android"] },
+    "support": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["supported"],
+      "properties": {
+        "supported": { "type": "boolean" },
+        "reason": { "$ref": "#/$defs/text" }
+      },
+      "if": { "properties": { "supported": { "const": false } } },
+      "then": { "required": ["reason"] }
+    },
+    "prop": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "type", "required", "description"],
+      "properties": {
+        "name": {
+          "description": "Components have no className or style prop (0031).",
+          "type": "string",
+          "pattern": "^[a-z][A-Za-z0-9]*$",
+          "not": { "enum": ["className", "style"] }
+        },
+        "type": { "$ref": "#/$defs/text" },
+        "values": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": ["string", "number", "boolean"] }
+        },
+        "default": { "type": ["string", "number", "boolean"] },
+        "required": { "type": "boolean" },
+        "description": { "$ref": "#/$defs/text" },
+        "platformOnly": {
+          "description": "The platforms that have this prop, when not all do.",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/platform" }
+        }
+      },
+      "if": { "properties": { "required": { "const": true } } },
+      "then": { "not": { "required": ["default"] } }
+    },
+    "test": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["date", "platform", "technology", "tester"],
+      "properties": {
+        "date": { "type": "string", "pattern": "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$" },
+        "platform": { "$ref": "#/$defs/platform" },
+        "technology": {
+          "description": "The assistive technology, such as NVDA with Chrome.",
+          "$ref": "#/$defs/text"
+        },
+        "tester": {
+          "description": "A GitHub username.",
+          "type": "string",
+          "pattern": "^[A-Za-z0-9](-?[A-Za-z0-9]){0,38}$"
+        },
+        "notes": { "$ref": "#/$defs/text" }
+      }
+    },
+    "betaOrLater": {
+      "required": ["status"],
+      "properties": { "status": { "enum": ["beta", "stable", "deprecated"] } }
+    },
+    "supported": { "required": ["supported"], "properties": { "supported": { "const": true } } },
+    "onWeb": {
+      "required": ["platforms"],
+      "properties": { "platforms": { "required": ["web"], "properties": { "web": { "$ref": "#/$defs/supported" } } } }
+    },
+    "onIos": {
+      "required": ["platforms"],
+      "properties": { "platforms": { "required": ["ios"], "properties": { "ios": { "$ref": "#/$defs/supported" } } } }
+    },
+    "onAndroid": {
+      "required": ["platforms"],
+      "properties": { "platforms": { "required": ["android"], "properties": { "android": { "$ref": "#/$defs/supported" } } } }
+    },
+    "testedOnWeb": {
+      "properties": {
+        "accessibility": {
+          "properties": { "tests": { "contains": { "properties": { "platform": { "const": "web" } } } } }
+        }
+      }
+    },
+    "testedOnIos": {
+      "properties": {
+        "accessibility": {
+          "properties": { "tests": { "contains": { "properties": { "platform": { "const": "ios" } } } } }
+        }
+      }
+    },
+    "testedOnAndroid": {
+      "properties": {
+        "accessibility": {
+          "properties": { "tests": { "contains": { "properties": { "platform": { "const": "android" } } } } }
+        }
+      }
+    }
+  }
+}
