@@ -4,7 +4,7 @@ A design system for web and mobile, built on purpose. One token source drives Re
 
 Squilp is a deliberate v2 of Lock In, my first design system, which grew without a plan. Every choice in Squilp is written down in [`decisions/`](decisions/), and nothing moved over from Lock In without passing an [audit](docs/plan.md#lock-in-audit-rubric).
 
-**Status:** setup (phase 1) is in progress. Not yet published.
+**Status:** setup (phase 1) is done; foundations (phase 2) are next. Not yet published.
 
 ## What's here
 
