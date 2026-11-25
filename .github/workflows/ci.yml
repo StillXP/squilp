@@ -27,4 +27,5 @@ jobs:
         run: npm install --global "$(node -p "require('./package.json').packageManager")"
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
+      - run: pnpm lint
       - run: pnpm test
