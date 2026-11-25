@@ -121,6 +121,7 @@ Tokens come in three tiers, and components may only use the top two. This is the
 
 **Rules enforced in CI**
 
+- Token names are lowercase, and semantic names start with a known category and have no color words (decision record 0035).
 - Components never reference a primitive token directly.
 - Every semantic color pair (text on background) meets its contrast target in every mode.
 - No unused tokens and no broken references at build time.
@@ -510,7 +511,7 @@ These were considered on 24 Nov 2026 and deliberately left out of v1, to keep th
 | Adoption metrics (share of VolleyXP built from Squilp) | Easy to add once the migration starts; useful for the case study |
 | Versioned docs (docs for older releases) | Only needed once a 2.0 exists |
 
-**Decided in phase 1:** the support matrix (0022), the Figma plan and token sync (0023), checks without a Mac (0024), versioning before 1.0 (0025), the build and CI (0026), the CSS variable prefix (0027), the package shells (0028), the Figma library structure (0029), the Tailwind theme and linting (0030), the component API conventions (0031), component metadata (0032), lint exceptions (0033), and no layout props for now (0034).
+**Decided in phase 1:** the support matrix (0022), the Figma plan and token sync (0023), checks without a Mac (0024), versioning before 1.0 (0025), the build and CI (0026), the CSS variable prefix (0027), the package shells (0028), the Figma library structure (0029), the Tailwind theme and linting (0030), the component API conventions (0031), component metadata (0032), lint exceptions (0033), no layout props for now (0034), and token naming checks (0035).
 
 ## Supporting materials
 

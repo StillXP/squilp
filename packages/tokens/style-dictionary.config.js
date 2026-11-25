@@ -1,3 +1,4 @@
+import { checkNames } from './names.js';
 import { tailwindTheme } from './tailwind-format.js';
 
 // React Native takes plain numbers, so a 4 px dimension becomes 4.
@@ -12,7 +13,11 @@ function dimensionToNumber(token) {
 
 export default {
   source: ['src/**/*.tokens.json'],
+  preprocessors: ['squilp/names'],
   hooks: {
+    preprocessors: {
+      'squilp/names': checkNames,
+    },
     formats: {
       'squilp/tailwind/theme': tailwindTheme,
     },
