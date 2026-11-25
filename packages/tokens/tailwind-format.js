@@ -1,7 +1,10 @@
-// Tailwind's theme namespace for each token category. A category that is not
-// listed stops the build, so a token never disappears from the theme unnoticed.
+// Tailwind's theme namespaces for each kind of token. One that is not listed
+// stops the build, so a token never disappears from the theme unnoticed.
 const namespaces = {
-  space: 'spacing',
+  space: ['spacing'],
+  'color.background': ['background-color'],
+  'color.text': ['text-color'],
+  'color.border': ['border-color', 'outline-color'],
 };
 
 // An element is dark when it is in a dark area, unless a nested area sets
@@ -10,13 +13,15 @@ const darkArea = "[data-color-mode='dark']";
 const otherArea = `${darkArea} [data-color-mode]:not(${darkArea})`;
 const darkVariant = `&:where(${darkArea}, ${darkArea} *):not(:where(${otherArea}, ${otherArea} *))`;
 
-function themeVariable(token) {
-  const [category, ...rest] = token.path;
-  const namespace = namespaces[category];
-  if (!namespace) {
-    throw new Error(`${token.path.join('.')}: "${category}" has no Tailwind namespace`);
+function themeVariables(token) {
+  const path = token.path.filter((part) => part !== '$root');
+  const kind = path[0] === 'color' ? path.slice(0, 2) : path.slice(0, 1);
+  const found = namespaces[kind.join('.')];
+  if (!found) {
+    throw new Error(`${path.join('.')}: "${kind.join('.')}" has no Tailwind namespace`);
   }
-  return `  --${[namespace, ...rest].join('-')}: var(--${token.name});`;
+  const rest = path.slice(kind.length);
+  return found.map((namespace) => `  --${[namespace, ...rest].join('-')}: var(--${token.name});`);
 }
 
 export function tailwindTheme({ dictionary }) {
@@ -30,7 +35,7 @@ export function tailwindTheme({ dictionary }) {
 
 /* inline keeps the Squilp variable in each class, so modes apply where they are set. */
 @theme inline {
-${dictionary.allTokens.map(themeVariable).join('\n')}
+${dictionary.allTokens.flatMap(themeVariables).join('\n')}
 }
 `;
 }

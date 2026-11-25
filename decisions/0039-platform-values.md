@@ -1,6 +1,6 @@
 # 0039: Platform values
 
-Status: Accepted · Date: 2026-11-25
+Status: Accepted, raw platform values superseded by 0040 · Date: 2026-11-25
 
 ## Context
 

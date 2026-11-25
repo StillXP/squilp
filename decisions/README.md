@@ -42,4 +42,5 @@ Squilp's architecture decision records, numbered and never deleted. A superseded
 | 0036 | [Versions and release pull requests](0036-versions-and-release-pull-requests.md) | Accepted |
 | 0037 | [Publish step and first version](0037-publish-step-and-first-version.md) | Accepted |
 | 0038 | [Brand direction](0038-brand-direction.md) | Accepted |
-| 0039 | [Platform values](0039-platform-values.md) | Accepted |
+| 0039 | [Platform values](0039-platform-values.md) | Accepted, partly superseded by 0040 |
+| 0040 | [Color tokens](0040-color-tokens.md) | Accepted |

@@ -17,6 +17,9 @@ export function hasReference(value) {
   return '$ref' in value || Object.values(value).some(hasReference);
 }
 
+const groupsIn = (token) =>
+  Object.keys(token).filter((key) => !key.startsWith('$') && typeof token[key] === 'object');
+
 // Finds every token, with the type it has or inherits.
 export function* tokensIn(group, path = [], inherited = group.$type) {
   for (const [key, child] of Object.entries(group)) {
@@ -26,7 +29,7 @@ export function* tokensIn(group, path = [], inherited = group.$type) {
     const here = key === '$root' ? path : [...path, key];
     const type = child.$type ?? inherited;
     if ('$value' in child || '$ref' in child) {
-      yield { path: here, type, value: child.$value ?? { $ref: child.$ref }, keys: Object.keys(child) };
+      yield { path: here, type, value: child.$value ?? { $ref: child.$ref }, keys: Object.keys(child), inside: groupsIn(child) };
     } else {
       yield* tokensIn(child, here, type);
     }
@@ -36,8 +39,11 @@ export function* tokensIn(group, path = [], inherited = group.$type) {
 // Returns what is wrong with the token names. Empty when they are valid.
 export function nameProblems(tokens) {
   const found = [];
-  for (const { path, value } of tokensIn(tokens)) {
+  for (const { path, value, inside } of tokensIn(tokens)) {
     const name = path.join('.');
+    if (inside.length > 0) {
+      found.push(`${name}: a token cannot hold ${inside.join(', ')}. Put its own value in $root`);
+    }
     for (const part of path.filter((part) => !segment.test(part))) {
       found.push(`${name}: "${part}" may only have lowercase letters, numbers and single hyphens`);
     }
