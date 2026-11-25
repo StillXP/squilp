@@ -101,23 +101,7 @@ If the budget still runs out, Playwright screenshot tests are the fallback.
 
 ### Cross-platform API conventions
 
-React and React Native components share one API: the same component names, the same props and the same values. Where the platforms differ, such as events and accessibility props, a Squilp prop hides the difference so product code reads the same on web and mobile.
-
-| Concept | React (web) | React Native |
-| --- | --- | --- |
-| Component name | `Button` | `Button` |
-| Visual style | `variant="primary"` | `variant="primary"` |
-| Size | `size="md"` | `size="md"` |
-| Disabled | `disabled` | `disabled` |
-| Action | `onPress` (maps to `onClick`) | `onPress` |
-| Accessible label | `label` (becomes `aria-label`) | `label` (becomes `accessibilityLabel`) |
-
-**Rules**
-
-- Prop names and values match on both platforms; a prop that only makes sense on one is marked platform-only in the metadata.
-- Squilp's own props (`onPress`, `label`) hide platform differences instead of exposing `onClick` or `accessibilityLabel`.
-- The component metadata file records the API once, with any platform-only props flagged, so the docs site and the MCP server show it correctly.
-- New components need their API row in the conventions doc before work starts.
+React and React Native components share one API: the same component names, the same props and the same values. The conventions are in [API conventions](api-conventions.md) (decision record 0031).
 
 ## Token architecture
 
@@ -526,7 +510,7 @@ These were considered on 24 Nov 2026 and deliberately left out of v1, to keep th
 | Adoption metrics (share of VolleyXP built from Squilp) | Easy to add once the migration starts; useful for the case study |
 | Versioned docs (docs for older releases) | Only needed once a 2.0 exists |
 
-**Decided in phase 1:** the support matrix (0022), the Figma plan and token sync (0023), checks without a Mac (0024), versioning before 1.0 (0025), the build and CI (0026), the CSS variable prefix (0027), the package shells (0028), the Figma library structure (0029), and the Tailwind theme and linting (0030).
+**Decided in phase 1:** the support matrix (0022), the Figma plan and token sync (0023), checks without a Mac (0024), versioning before 1.0 (0025), the build and CI (0026), the CSS variable prefix (0027), the package shells (0028), the Figma library structure (0029), the Tailwind theme and linting (0030), and the component API conventions (0031).
 
 ## Supporting materials
 

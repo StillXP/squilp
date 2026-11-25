@@ -14,13 +14,13 @@ Lock In, the system Squilp replaces, became messy because tools and patterns wer
 ## Sources of truth
 
 1. `decisions/`: what has been decided and why. These win over everything else.
-2. `docs/plan.md`: the full plan, including foundations, the cross-platform API conventions, the accessibility definition of done, the contribution requirements and the roadmap.
+2. `docs/plan.md`: the full plan, including foundations, the accessibility definition of done, the contribution requirements and the roadmap.
 3. `case-study/before/`: what Lock In and VolleyXP looked like before. Do not copy from Lock In unless the audit marked that part Keep or Rework.
 
 ## Rules for code
 
 - **Tokens only.** No raw colors, sizes or durations in components. Components use semantic tokens, never primitives.
-- **One API for React and React Native.** Same component names, props and values; Squilp props such as `onPress` and `label` hide platform differences. Follow the conventions table in the plan.
+- **One API for React and React Native.** Same component names, props and values; Squilp props such as `onPress` and `label` hide platform differences. Follow `docs/api-conventions.md`.
 - **Accessibility is part of done:** WCAG 2.2 AA, keyboard and focus behavior, screen reader labels, and the checks listed in the plan.
 - **Styling:** CSS Modules with CSS variables on web, `StyleSheet` with the Squilp theme on React Native. Apps use Tailwind with Squilp's theme only: no default palette, no bracket values.
 - **Every component** has a metadata file, stories, tests and a docs page before it reaches Beta.
