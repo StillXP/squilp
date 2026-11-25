@@ -38,3 +38,4 @@ Squilp's architecture decision records, numbered and never deleted. A superseded
 | 0032 | [Component metadata](0032-component-metadata.md) | Accepted |
 | 0033 | [Lint exceptions need a reason](0033-lint-exceptions-need-a-reason.md) | Accepted |
 | 0034 | [No layout props for now](0034-no-layout-props-for-now.md) | Accepted |
+| 0035 | [Token naming checks](0035-token-naming-checks.md) | Accepted |
