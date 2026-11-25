@@ -69,7 +69,6 @@ test('a bad platform file stops the build', async () => {
 
 const valid = {
   'a reference to a shared token': override('{space.11}'),
-  'a raw value of the same type': override({ value: 44, unit: 'px' }),
   'nothing': {},
   'a $schema': { $schema: 'https://example.com/schema.json', ...override('{space.11}') },
 };
@@ -84,7 +83,7 @@ const invalid = [
   ['a misspelled name', { space: { target: { minimum: px(44) } } }, /no shared token/],
   ['a new token', { color: { text: { body: { $value: '#000' } } } }, /no shared token/],
   ['a primitive', { space: { 6: px(28) } }, /this is a primitive/],
-  ['a value of another type', override(44), /the type must stay dimension/],
+  ['a raw value', override({ value: 44, unit: 'px' }), /must point at a shared token/],
   ['a reference to another type', override('{text.weight}'), /the type must stay dimension/],
   ['a reference to a semantic token of another type', override('{text.strong}'), /the type must stay dimension/],
   ['a reference to nothing', override('{space.13}'), /\{space\.13\} does not exist/],

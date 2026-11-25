@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import StyleDictionary from 'style-dictionary';
-import { webConfig } from './style-dictionary.config.js';
+import { cssConfig } from './style-dictionary.config.js';
 import { nameProblems } from './names.js';
 
 const raw = { $type: 'color', $value: { colorSpace: 'oklch', components: [0.7, 0.2, 50] } };
@@ -36,6 +36,7 @@ const invalid = [
   ['a color word after a hyphen', at('color.background.accent-orange', alias), /"orange" says what it looks like/],
   ['a color word in a $ref token', at('color.background.blue', { $type: 'color', $ref: '#/color/orange/500/$value' }), /"blue" says/],
   ['a color word when only part is a reference', at('text.blue', { $type: 'typography', $value: { fontSize: '{font.size.300}', fontWeight: 400 } }), /"blue" says/],
+  ['a token inside a token', { color: { background: { accent: { ...alias, hover: alias } } } }, /a token cannot hold hover/],
   ['a color word in a $root token', at('color.blue.$root', alias), /"blue" says what it looks like/],
 ];
 
@@ -48,6 +49,6 @@ for (const [title, tokens, reason] of invalid) {
 
 test('a bad name stops the build', async () => {
   const tokens = { color: { orange: { 500: raw }, background: { blue: alias } } };
-  const dictionary = new StyleDictionary({ ...webConfig(undefined, 'dist/'), tokens }, { init: false });
+  const dictionary = new StyleDictionary({ ...cssConfig(':root', 'squilp/built'), tokens }, { init: false });
   await assert.rejects(dictionary.init(), /Invalid token names:\ncolor\.background\.blue/);
 });

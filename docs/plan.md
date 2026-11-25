@@ -132,7 +132,7 @@ Ten foundations come first, because every component is built from them. Each get
 
 | Foundation | v1 approach | Decision (24 Nov 2026) |
 | --- | --- | --- |
-| Color | Primitive ramps built in OKLCH for even lightness steps; semantic roles for background, text, border, icon and status | Decided: purple brand hue and plain neutrals for now (decision record 0038); one accent color, plus neutrals and four status colors |
+| Color | Primitive ramps built in OKLCH for even lightness steps; semantic roles for background, text, border, icon and status | Decided: purple brand hue and plain neutrals for now (decision record 0038), with ramps, roles and modes in 0040; one accent color, plus neutrals and four status colors |
 | Typography | A modular scale exposed as semantic text styles (display, heading, body, label, code); maps to Dynamic Type on iOS and font scale on Android | Decided: system fonts on native (SF Pro on iOS, Roboto on Android) and Inter on web, with JetBrains Mono for code in the docs. Scores use each font's tabular figures. No font licensing needed in the apps |
 | Layout | Breakpoint tokens, a column grid per breakpoint, safe-area handling on iOS and Android, and rules for how layouts reflow from phone to desktop | Decided: breakpoint tokens use Tailwind's default values (640, 768, 1024, 1280, 1536). Components design for three size classes aliased to them: compact under 640, medium 640–1023, expanded 1024 and up. React Native reads the same values through a hook. A large-screen display mode is planned for after 1.0 |
 | Spacing | A 4 px base grid, semantic inset, stack and inline tokens | Decided: fixed steps on the 4 px grid on every platform; layouts change at breakpoints, not fluidly |

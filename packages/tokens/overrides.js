@@ -2,13 +2,6 @@ import { hasReference, tokensIn } from './names.js';
 
 const reference = /^\{(.+)\}$/;
 
-// The same kind of value: both numbers, or both objects with the same keys.
-function shape(value) {
-  if (Array.isArray(value)) return 'array';
-  if (value === null || typeof value !== 'object') return typeof value;
-  return Object.keys(value).sort().join(',');
-}
-
 // Follows references to the token that holds a value.
 function resolve(tokens, name, seen = []) {
   const token = tokens.get(name);
@@ -53,10 +46,14 @@ export function overrideProblems(shared, overrides) {
     }
     const before = resolve(tokens, name);
     const target = typeof value === 'string' && value.match(reference);
-    const after = target ? resolve(tokens, target[1]) : { type: before?.type, value };
+    if (!target) {
+      found.push(`${name}: a platform value must point at a shared token`);
+      continue;
+    }
+    const after = resolve(tokens, target[1]);
     if (!after) {
       found.push(`${name}: ${value} does not exist`);
-    } else if (before && (after.type !== before.type || (!hasReference(after.value) && shape(after.value) !== shape(before.value)))) {
+    } else if (before && after.type !== before.type) {
       found.push(`${name}: the type must stay ${before.type}`);
     }
   }
