@@ -23,7 +23,7 @@ Squilp's architecture decision records, numbered and never deleted. A superseded
 | 0017 | [Material Symbols as SVG on every platform](0017-material-symbols-as-svg-on-every-platform.md) | Accepted |
 | 0018 | [React Native components stay out of web Storybook](0018-react-native-components-stay-out-of-web-storybook.md) | Accepted |
 | 0019 | [Use Chromatic within a snapshot budget](0019-use-chromatic-within-a-snapshot-budget.md) | Accepted |
-| 0020 | [Foundations](0020-foundations.md) | Accepted |
+| 0020 | [Foundations](0020-foundations.md) | Accepted, partly superseded by 0038 |
 | 0021 | [Tooling and project setup](0021-tooling-and-project-setup.md) | Accepted |
 | 0022 | [Support matrix: two tiers with pinned minimums](0022-support-matrix.md) | Accepted, partly superseded by 0026 |
 | 0023 | [Figma runs on a Professional plan](0023-figma-professional-plan.md) | Accepted |
@@ -41,3 +41,4 @@ Squilp's architecture decision records, numbered and never deleted. A superseded
 | 0035 | [Token naming checks](0035-token-naming-checks.md) | Accepted |
 | 0036 | [Versions and release pull requests](0036-versions-and-release-pull-requests.md) | Accepted |
 | 0037 | [Publish step and first version](0037-publish-step-and-first-version.md) | Accepted |
+| 0038 | [Brand direction](0038-brand-direction.md) | Accepted |
